@@ -1,0 +1,19 @@
+# Файлы БД
+postgres_data/
+*.db
+*.sqlite
+*.sqlite3
+database/data
+!database/migrations
+
+# Секреты
+.env
+*.env
+
+# Файлы уровней (не коммитим бинарные файлы)
+/level_files/
+!level_files/.gitkeep
+
+# Файлы кэша Python
+__pycache__
+*.pyc
