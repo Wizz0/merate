@@ -9,3 +9,6 @@ CREATE TABLE contents (
     review_text TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+INSERT INTO contents(title, type, cover_url, release_year, author, rating, review_text) VALUES
+    ("Minecraft", "игра", " ", "2011", "Mojang", 6, "Minecraft - моя жизнь")
