@@ -24,10 +24,6 @@ services:
     container_name: merate_backend
     ports:
       - "8010:8010"
-    env_file:
-      - ./.env
-    environment:
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/merate
     depends_on:
       postgres:
         condition: service_healthy

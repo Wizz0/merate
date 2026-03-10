@@ -11,4 +11,4 @@ CREATE TABLE contents (
 );
 
 INSERT INTO contents(title, type, cover_url, release_year, author, rating, review_text) VALUES
-    ("Minecraft", "игра", " ", "2011", "Mojang", 6, "Minecraft - моя жизнь")
+    ('Minecraft', 'игра', '', 2011, 'Mojang', 6, 'Minecraft - моя жизнь');
