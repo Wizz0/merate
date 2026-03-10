@@ -1,22 +1,29 @@
-from fastapi import APIRouter, HTTPException, Depends, Request
+from fastapi import APIRouter, HTTPException, Depends, Request, Query
 from datetime import date
 import asyncpg
+from typing import Optional
 from ..database import get_db
-from ..models import ContentCreate, ContentResponse
+from ..models import ContentCreate, ContentResponse, ContentType
 
 router = APIRouter(prefix="/contents", tags=["contents"])
 
 @router.get("/", response_model=list[ContentResponse])
 async def get_contents(
+    type: Optional[ContentType] = Query(None, description="Фильтр по типу контента"),
     conn: asyncpg.Connection = Depends(get_db)
 ):
     """Получить все контент-карточки"""
-
-    rows = await conn.fetch("""
-        SELECT * 
-        FROM contents
-        ORDER BY created_at DESC
-    """)
+    if type:
+        rows = await conn.fetch("""
+            SELECT * FROM contents
+            WHERE type = $1
+            ORDER BY created_at DESC, id DESC
+        """, type.value)
+    else:
+        rows = await conn.fetch("""
+            SELECT * FROM contents
+            ORDER BY created_at DESC
+        """)
 
     return [dict(row) for row in rows]
 

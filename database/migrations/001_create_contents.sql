@@ -1,7 +1,7 @@
 CREATE TABLE contents (
 	id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    type VARCHAR(255),
+    type VARCHAR(255) CHECK (type IN ('фильм', 'сериал', 'игра', 'книга')),
     cover_url VARCHAR(255),
     release_year INTEGER,
     author VARCHAR(255),
