@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from datetime import date, datetime
+from datetime import date
 from typing import Optional
 
 # Модель для контент-карточки
@@ -12,7 +12,7 @@ class Content(BaseModel):
     author: Optional[str] = None
     rating: Optional[int] = None
     review_text: Optional[str] = None
-    created_at: datetime
+    created_at: date
 
 # Модель для создания контент-карточки
 class ContentCreate(BaseModel):
@@ -23,15 +23,16 @@ class ContentCreate(BaseModel):
     author: Optional[str] = None
     rating: Optional[int] = None
     review_text: Optional[str] = None
+    created_at: Optional[date] = None
 
 # Модель для ответа с контент-карточками
 class ContentResponse(BaseModel):
     id: int
     title: str
-    type: str
-    cover_url: str
-    release_year: int
-    author: str
-    rating: int
-    review_text: str
-    created_at: datetime
+    type: Optional[str] = None
+    cover_url: Optional[str] = None
+    release_year: Optional[int] = None
+    author: Optional[str] = None
+    rating: Optional[int] = None
+    review_text: Optional[str] = None
+    created_at: date

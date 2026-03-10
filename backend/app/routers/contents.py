@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends, Request
-from datetime import date, datetime
+from datetime import date
 import asyncpg
 from ..database import get_db
 from ..models import ContentCreate, ContentResponse
@@ -27,6 +27,9 @@ async def create_content(
 ):
     """Создать новую контент-карточку"""
 
+    # Если дата не указана, используем сегодняшнюю
+    created_at = content.created_at if content.created_at else date.today()
+
     # Проверяем, что обязательные поля заполнены
     if not content.title:
         raise HTTPException(status_code=400, detail="Title is required")
@@ -43,9 +46,9 @@ async def create_content(
         content.author,
         content.rating,
         content.review_text,
-        datetime.now()
+        created_at
     )
-    
+
     if not row:
         raise HTTPException(status_code=500, detail="Failed to create content")
     
