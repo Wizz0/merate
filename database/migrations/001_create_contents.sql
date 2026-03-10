@@ -7,7 +7,7 @@ CREATE TABLE contents (
     author VARCHAR(255),
     rating INTEGER,
     review_text TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at DATE DEFAULT CURRENT_DATE
 );
 
 INSERT INTO contents(title, type, cover_url, release_year, author, rating, review_text) VALUES
